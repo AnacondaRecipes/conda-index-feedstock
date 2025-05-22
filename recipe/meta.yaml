@@ -1,5 +1,5 @@
 {% set name = "conda-index" %}
-{% set version = "0.6.0" %}
+{% set version = "0.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,16 +7,17 @@ package:
 
 source:
   url: https://github.com/conda/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: b096e34b048b494489ff41389ecc4b17b9f400dbf5b36ee2e39aa2558cc9a6c2
+  sha256: 93034029c5d3b13ba4837d0b7813206c2faedf0a46bf25952d4d8a3882e31206
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   host:
-    - flit-core >=3.2,<4
+    - hatchling >=1.12.2
+    - hatch-vcs >=0.2.0
     - python
     - pip
   run:
@@ -36,8 +37,7 @@ test:
   source_files:
     - tests
   requires:
-    # Skip conda-build for py313 because conda-index is a cycle dependency
-    - conda-build >=24  # [py<313]
+    - conda-build >=24
     - conda-package-handling >=2.2.0
     - coverage
     - pip
@@ -50,8 +50,7 @@ test:
     - aiohttp !=4.0.0a0, !=4.0.0a1
   commands:
     - pip check
-    # ModuleNotFoundError: No module named 'conda_build' for py313.
-    - pytest -k test_index_on_single_subdir_1  # [py<313]
+    - pytest -k test_index_on_single_subdir_1
 
 about:
   home: https://github.com/conda/conda-index
