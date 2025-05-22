@@ -37,8 +37,7 @@ test:
   source_files:
     - tests
   requires:
-    # Skip conda-build for py313 because conda-index is a cycle dependency
-    - conda-build >=24  # [py<313]
+    - conda-build >=24
     - conda-package-handling >=2.2.0
     - coverage
     - pip
@@ -51,8 +50,7 @@ test:
     - aiohttp !=4.0.0a0, !=4.0.0a1
   commands:
     - pip check
-    # ModuleNotFoundError: No module named 'conda_build' for py313.
-    - pytest -k test_index_on_single_subdir_1  # [py<313]
+    - pytest -k test_index_on_single_subdir_1
 
 about:
   home: https://github.com/conda/conda-index
