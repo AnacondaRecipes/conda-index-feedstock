@@ -10,13 +10,14 @@ source:
   sha256: fe25529c575619a2cc9106885ca40b3837253e7942406e3e0e519a8cd4d6f36d
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   host:
-    - flit-core >=3.2,<4
+    - hatchling >=1.12.2
+    - hatch-vcs >=0.2.0
     - python
     - pip
   run:
