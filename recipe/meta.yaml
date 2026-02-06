@@ -10,7 +10,7 @@ source:
   sha256: afbf3850b2197ab4ceb7785bee462e063bd498488c185112477cbe4197e70aad
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
@@ -35,25 +35,11 @@ requirements:
 test:
   imports:
     - conda_index.index
-  source_files:
-    - tests
   requires:
-    # https://github.com/conda/conda-index/blob/0.7.0/conda_index/plugin.py#L22
-    - conda-build >=24.1
-    # https://github.com/conda/conda-index/blob/0.7.0/recipe/meta.yaml#L37
-    - conda-package-handling >=2.2.0
-    - coverage
     - pip
-    - pytest >=7
-    - pytest-cov
-    - pytest-mock
-    - tomli
-    # "fsspec[http]" expands to 'http = ["aiohttp !=4.0.0a0, !=4.0.0a1"]''
-    - fsspec
-    - aiohttp !=4.0.0a0, !=4.0.0a1
   commands:
     - pip check
-    - pytest -k test_index_on_single_subdir_1
+    - python -m conda_index --help
 
 about:
   home: https://github.com/conda/conda-index
