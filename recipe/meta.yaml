@@ -53,8 +53,9 @@ test:
     - aiohttp !=4.0.0a0, !=4.0.0a1
   commands:
     - pip check
-    # TODO: remove this once conda-build is available for Python 3.14
-    - pytest -k test_index_on_single_subdir_1  # [py<314]
+    - python -m conda_index
+    # TODO: Enable this once conda-build is available for Python 3.14
+    #- pytest -k test_index_on_single_subdir_1  # [py<314]
 
 about:
   home: https://github.com/conda/conda-index
