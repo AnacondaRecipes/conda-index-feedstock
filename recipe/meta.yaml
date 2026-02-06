@@ -35,6 +35,8 @@ requirements:
 test:
   imports:
     - conda_index.index
+  requires:
+    - pip
   commands:
     - pip check
     - python -m conda_index
