@@ -35,27 +35,9 @@ requirements:
 test:
   imports:
     - conda_index.index
-  source_files:
-    - tests
-  requires:
-    # https://github.com/conda/conda-index/blob/0.7.0/conda_index/plugin.py#L22
-    #- conda-build >=24.1  # [py<314]
-    # https://github.com/conda/conda-index/blob/0.7.0/recipe/meta.yaml#L37
-    - conda-package-handling >=2.2.0
-    - coverage
-    - pip
-    - pytest >=7
-    - pytest-cov
-    - pytest-mock
-    - tomli
-    # "fsspec[http]" expands to 'http = ["aiohttp !=4.0.0a0, !=4.0.0a1"]''
-    - fsspec
-    - aiohttp !=4.0.0a0, !=4.0.0a1
   commands:
     - pip check
     - python -m conda_index
-    # TODO: Enable this once conda-build is available for Python 3.14
-    #- pytest -k test_index_on_single_subdir_1  # [py<314]
 
 about:
   home: https://github.com/conda/conda-index
