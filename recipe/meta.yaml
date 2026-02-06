@@ -39,7 +39,7 @@ test:
     - pip
   commands:
     - pip check
-    - python -m conda_index
+    - python -m conda_index --help
 
 about:
   home: https://github.com/conda/conda-index
